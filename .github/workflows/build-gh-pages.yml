@@ -11,12 +11,13 @@ jobs:
   deploy-book:
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout code
     - uses: actions/checkout@v2
-
-    - name: Set up Python 3.13
+    
+    - name: Set up Python
       uses: actions/setup-python@v1
       with:
-        python-version: 3.13
+        python-version: '3.13'
 
     - name: Install dependencies
       run: |
@@ -25,7 +26,7 @@ jobs:
 
     - name: Build the book
       run: |
-        rm -rf DISCOVER/_tags/*
+        rm -rf DISCOVER/tags/
         jupyter-book build DISCOVER
 
     - name: Push book HTML to gh-pages
